@@ -1,0 +1,786 @@
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+
+
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.toedter.calendar.JDateChooser;
+public class StudentInfo{
+	static String imagepath = "";
+static int l=0, c=0;
+	public static void main(String []args) {
+	JFrame frame = new JFrame();
+	frame.setSize(2000,850);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.setTitle("STUDENT INFORMATION MANAGEMENT");
+	Container c;
+	c =frame.getContentPane();
+	c.setBackground(new Color(135,206,250,30));//RGBT
+	frame.setLayout(null);
+	
+	JLabel titlelabel = new JLabel ("STUDENT INFORMATION MANAGEMENT");
+	titlelabel.setBounds(70,10,300,20);
+	titlelabel.setFont(new Font("Arial",Font.BOLD,14));
+	titlelabel.setForeground(Color.BLUE);
+	titlelabel.setText("STUDENT INFORMATION MANAGEMENT");
+	frame.add(titlelabel);
+	
+	
+	JLabel PersonalInfo = new JLabel ("Personal Information :");
+	PersonalInfo.setFont(new Font("Arial",Font.BOLD,12));
+	PersonalInfo.setBounds(50,50,200,20);
+	frame.add(PersonalInfo);
+	
+	
+	JLabel namelabel = new JLabel("Name :");
+	namelabel.setBounds(50,80,100,20);
+	frame.add(namelabel);
+	JTextField nametf = new JTextField();
+	nametf.setBounds(150,80,200,20);
+	frame.add(nametf);
+	
+	JLabel idlabel = new JLabel ("Student ID :");
+	idlabel.setBounds(50,110,200,20);
+	frame.add(idlabel);
+	JTextField Idtf = new JTextField();
+	Idtf.setBounds(150,110,200,20);
+	frame.add(Idtf);
+	
+	JLabel BirthDate = new JLabel("Date of Birth");
+	BirthDate.setBounds(50,140,200,20);
+	frame.add(BirthDate);
+	JDateChooser BDChooser = new JDateChooser();
+	BDChooser.setBounds(150,140,200,20);
+	frame.add(BDChooser);
+	
+	
+	
+	JLabel Genderlabel = new JLabel("Gender :");
+	Genderlabel.setBounds(50,170,100,20);
+	frame.add(Genderlabel);
+
+	
+	String gender[]= {"Male","Female","Other"};
+	JComboBox c1 = new JComboBox(gender);
+	c1.setBounds(150,170,200,20);
+	frame.add(c1);
+	
+	JLabel Bloodgroup= new JLabel ("Blood Group :");
+	Bloodgroup.setBounds(50,200,100,20);
+	frame.add(Bloodgroup);
+	
+	String BloodGroup[]= {"A+","A-","B+","B-","AB+","AB-","O+","O-"};
+	JComboBox c2 = new JComboBox(BloodGroup);
+	c2.setBounds(150,200,200,20);
+	frame.add(c2);
+	
+	JLabel Nationality = new JLabel ("Nationality :");
+	Nationality.setBounds(50,230,100,20);
+	frame.add(Nationality);
+	JTextField Nationalitytf = new JTextField();
+	Nationalitytf.setBounds(150,230,200,20);
+	frame.add(Nationalitytf);
+	
+
+	
+	JLabel Address = new JLabel ("Address :");
+	Address.setBounds(50,260,100,20);
+	frame.add(Address);
+	JTextField Addresstf = new JTextField();
+	Addresstf.setBounds(150,260,200,20);
+	frame.add(Addresstf);
+	
+	JLabel Contact = new JLabel ("Contact Number :");
+	Contact.setBounds(50,290,100,20);
+	frame.add(Contact);
+	JTextField Contacttf = new JTextField();
+	Contacttf.setBounds(150,290,200,20);
+	frame.add(Contacttf);
+	
+	JLabel Email= new JLabel ("Email :");
+	Email.setBounds(50,320,100,20);
+	frame.add(Email);
+	JTextField Emailtf = new JTextField();
+	Emailtf.setBounds(150,320,200,20);
+	frame.add(Emailtf);
+	
+	
+
+	JLabel AcademicInfo = new JLabel ("Academic Information :");
+	AcademicInfo.setFont(new Font("Arial",Font.BOLD,12));
+	AcademicInfo.setBounds(50,380,200,20);
+	frame.add(AcademicInfo);
+	
+
+	JLabel Dept= new JLabel ("Department :");
+	Dept.setBounds(50,440,100,20);
+	frame.add(Dept);
+	JTextField Depttf = new JTextField();
+	Depttf.setBounds(150,440,200,20);
+	frame.add(Depttf);
+	
+	JLabel Year= new JLabel ("Year :");
+	 Year.setBounds(50,470,100,20);
+	frame.add( Year);
+	JTextField  Yeartf = new JTextField();
+	Yeartf.setBounds(150,470,200,20);
+	frame.add( Yeartf);
+
+	JLabel CGPA= new JLabel ("Prev.Year CGPA:");
+	CGPA.setBounds(50,500,100,20);
+	frame.add(CGPA);
+	JTextField CGPAtf = new JTextField();
+	CGPAtf.setBounds(150,500,200,20);
+	frame.add(CGPAtf);
+	
+	JButton upload = new JButton("Browse");
+	upload.setBounds(50,620,100,20);
+	frame.add(upload);
+	
+	JLabel image = new JLabel("          Student Image");
+	image.setBounds(180,560,150,150);
+	image.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	frame.add(image);
+	
+	 
+	
+	 upload.addActionListener(new ActionListener() {
+		 public void actionPerformed(ActionEvent e) {
+			 JFileChooser fc= new JFileChooser();
+			 fc.setFileFilter(new FileNameExtensionFilter( "jpg", "png", "jpeg"));
+             int result = fc.showOpenDialog(null); 
+             if(result == JFileChooser.APPROVE_OPTION) {
+            	File select =  fc.getSelectedFile();
+            imagepath = select.getAbsolutePath();
+            	ImageIcon imageicon = new ImageIcon (new ImageIcon(imagepath).getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH));
+            	image.setIcon(imageicon);
+            }
+             else {
+            	JOptionPane. showMessageDialog(frame, "No Image Found","Warning",2);
+             }
+		 }
+	 });
+	
+	JButton insert = new JButton("Insert");
+	insert.setForeground(new Color(0, 51, 102));
+	insert.setBackground(new Color(135, 206, 235));
+	insert.setBounds(50,745,100,20);
+	frame.add(insert);
+	
+	JButton update = new JButton("Update");
+	update.setForeground(new Color(50, 50, 50));
+	update.setBackground(new Color(200, 162, 200));
+	update.setBounds(170,745,100,20);
+	frame.add(update);
+	
+	JButton delete = new JButton("Delete");
+	delete.setForeground(new Color(102, 51, 0));
+	delete.setBackground(new Color(255, 218, 185));
+	delete.setBounds(290,745,100,20);
+	frame.add(delete);
+	
+	
+	
+	
+	 
+	
+	
+	//2nd part
+	
+	DefaultTableModel model = new DefaultTableModel();
+	String column[]= {"Name","Student ID","Date of Birth","Gender","Blood Group","Nationality","Address","Contact","Email","Dept","Year","CGPA","Image"};
+	model.setColumnIdentifiers(column);
+	JTable Table = new JTable(model);
+	
+	
+	JScrollPane scroll = new JScrollPane(Table);
+	scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	scroll.setBounds(430,50,1090,700);
+	frame.add(scroll);
+	
+	//SearchBar 
+	JLabel search = new JLabel("Search");
+	search.setBounds(1000,20,50,20);
+	frame.add(search);
+	
+	JTextField searchtf = new JTextField();
+	searchtf.setBounds(1050,20,400,20);
+	frame.add(searchtf);
+	
+	TableRowSorter sorter = new TableRowSorter(model);
+	Table.setRowSorter(sorter);
+	
+	searchtf.addKeyListener(new KeyAdapter() {
+		public void keyReleased(KeyEvent e) {
+			String searchText = searchtf.getText().trim();
+			sorter.setRowFilter(RowFilter.regexFilter("(?i)" + searchText));
+		}
+	});
+	
+	TableColumn namecolumn = new  TableColumn();
+	namecolumn = Table.getColumnModel().getColumn(0);
+	namecolumn.setPreferredWidth(180);
+	
+	TableColumn IdColumn = new  TableColumn();
+	IdColumn = Table.getColumnModel().getColumn(1);
+	IdColumn.setPreferredWidth(100);
+	
+	TableColumn BDcolumn= new TableColumn();
+	BDcolumn = Table.getColumnModel().getColumn(2);
+	BDcolumn.setPreferredWidth(140);
+	
+
+	TableColumn BloodgroupColumn= new TableColumn();
+	BloodgroupColumn= Table.getColumnModel().getColumn(4);
+	BloodgroupColumn.setPreferredWidth(90);
+	
+	TableColumn NationalityColumn= new TableColumn();
+	NationalityColumn= Table.getColumnModel().getColumn(5);
+	NationalityColumn.setPreferredWidth(90);
+	
+	TableColumn ContactColumn = new TableColumn();
+	ContactColumn = Table.getColumnModel().getColumn(7);
+	ContactColumn.setPreferredWidth(95);
+	
+	TableColumn EmailColumn = new TableColumn();
+	EmailColumn = Table.getColumnModel().getColumn(8);
+	EmailColumn.setPreferredWidth(183);
+	
+	TableColumn deptColumn = new TableColumn();
+	deptColumn = Table.getColumnModel().getColumn(9);
+	deptColumn.setPreferredWidth(45);
+	
+	TableColumn yearColumn = new TableColumn();
+	yearColumn = Table.getColumnModel().getColumn(10);
+	yearColumn.setPreferredWidth(45);
+	
+	TableColumn CGPAColumn = new TableColumn();
+	CGPAColumn = Table.getColumnModel().getColumn(11);
+	CGPAColumn.setPreferredWidth(50);
+	
+	TableColumn imagecolumn = new TableColumn ();
+	imagecolumn = Table.getColumnModel().getColumn(12);
+	imagecolumn.setPreferredWidth(200);
+	
+	insert.addActionListener(new ActionListener(){
+	public void actionPerformed(ActionEvent e) {
+		
+		 String BD = "";
+			Date SelectedDate = BDChooser.getDate();
+			SimpleDateFormat sdf =new SimpleDateFormat("d MMMM yyyy");
+			
+			if(SelectedDate != null) {
+				BD = sdf.format(SelectedDate);
+			}
+			
+
+			
+		
+		String row[]= {
+				nametf.getText(),
+		
+		Idtf.getText(),
+		 BD,
+		 (String) c1.getSelectedItem(),
+		 (String) c2.getSelectedItem(),
+		Nationalitytf.getText(),
+		 Addresstf.getText(),
+		 Contacttf.getText(),
+		 Emailtf.getText(),
+		 Depttf.getText(),
+		 Yeartf.getText(),
+		 CGPAtf.getText(),
+		 imagepath,
+		};
+		model.addRow(row);
+		JOptionPane.showMessageDialog(frame,"Inserted!");
+	}
+	});
+	
+	
+     update.addActionListener(new ActionListener () {
+    	 
+    	 public void actionPerformed(ActionEvent e) {
+    		 int SR = Table.getSelectedRow();
+    		 if(SR>=0) {
+    		 model.setValueAt(nametf.getText(),SR, 0);
+    		 model.setValueAt(Idtf.getText(),SR, 1);
+    		 model.setValueAt(BDChooser.getDate(),SR, 2);
+    		 model.setValueAt(c1.getSelectedItem(),SR, 3);
+    		 model.setValueAt(c2.getSelectedItem(),SR, 4);
+    		 model.setValueAt(Nationalitytf.getText(),SR, 5);
+    		 model.setValueAt(Addresstf.getText(),SR, 6);
+    		 model.setValueAt(Contacttf.getText(),SR, 7);
+    		 model.setValueAt(Emailtf.getText(),SR, 8);
+    		 model.setValueAt(Depttf.getText(),SR, 9);
+    		 model.setValueAt(Yeartf.getText(),SR, 10);
+    		 model.setValueAt(CGPAtf.getText(),SR, 11);
+    		 model.setValueAt(imagepath,SR, 12);
+    		 JOptionPane.showMessageDialog(frame,"Updated!");
+    	 }
+    	 }
+    	 
+     });
+    
+     delete.addActionListener(new ActionListener() {
+    	 public void actionPerformed(ActionEvent e) {
+    		 int SR = Table.getSelectedRow ();
+    		 if(SR>=0) {
+    			 model.removeRow(SR);
+    			 JOptionPane.showMessageDialog(frame,"Deleted");
+    		 }
+    		 
+    	 }
+     });
+     
+     //3rd part
+     JButton cgpa= new JButton("CGPA");
+     cgpa.setForeground(new Color(102, 51, 0));
+  	cgpa.setBackground(new Color(200, 162, 200));
+  	cgpa.setBounds(1400,760,100,20);
+  	frame.add(cgpa);
+  	
+  	cgpa.addActionListener(new ActionListener() {
+  		public void actionPerformed(ActionEvent e) {
+  			
+  			String semester = JOptionPane.showInputDialog("Enter the Semester: ");
+  			String numCourse = JOptionPane.showInputDialog("Enter the Number Of Courses: ");
+  			
+  			
+  			
+  			try {
+  			
+			int numCourses = Integer.parseInt(numCourse);
+			CGPACalculator(frame,semester,numCourses);
+			
+  			}
+  			catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null, " Number of Courses must be an Integer.","Invalid Input",3);
+				 numCourse = JOptionPane.showInputDialog("Enter the Number Of Courses: ");
+				 int numCourses = Integer.parseInt(numCourse);
+				 CGPACalculator(frame,semester,numCourses);
+					
+			}
+  		}
+  	});
+  	
+  	
+  	
+frame.setVisible(true);
+	}	
+	
+	
+public static void CGPACalculator(JFrame frame,String semester,int numCourses) {
+  		
+	JFrame cgpaFrame = new JFrame();
+	cgpaFrame.setSize(700,800);
+	cgpaFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	cgpaFrame.setTitle("CGPA");
+	cgpaFrame.setLayout(null);
+	cgpaFrame.setLocationRelativeTo(null); 
+	
+	JLabel sem = new JLabel ("Semester : " + semester);
+	sem.setBounds(50,10,200,30);
+	cgpaFrame.add(sem);
+	
+	JTextField[] courseName = new JTextField[numCourses];
+	JTextField[] credit = new JTextField[numCourses];
+	JTextField[] cgpatf = new JTextField[numCourses];
+	
+	for(int i=0;i<numCourses; i++) {
+		
+		JLabel CourseName = new JLabel("Course "+ (i+1) +" Name: ");
+		CourseName.setBounds(50,50+i*90,150,20);
+		CourseName.setFont(new Font("Arial",Font.BOLD,12));
+		CourseName.setForeground(Color.BLACK);
+		cgpaFrame.add(CourseName);
+		
+		 courseName[i] = new JTextField();
+		courseName[i].setBounds(170,50+i*90,150,20);
+		cgpaFrame.add(courseName[i]);
+		
+		JLabel Credit = new JLabel("Credit:* ");
+		Credit.setBounds(50,80+i*90,150,20);
+		Credit.setFont(new Font("Arial",Font.BOLD,12));
+		Credit.setForeground(Color.BLACK);
+		cgpaFrame.add(Credit);
+		
+		 credit[i] = new JTextField();
+		credit[i].setBounds(170,80+i*90,150,20);
+		cgpaFrame.add(credit[i]);
+		
+		JLabel cgpa = new JLabel("CGPA:* ");
+		cgpa.setBounds(50,110+i*90,150,20);
+		cgpa.setFont(new Font("Arial",Font.BOLD,12));
+		cgpa.setForeground(Color.BLACK);
+		cgpaFrame.add(cgpa);
+		
+		 cgpatf[i] = new JTextField();
+		cgpatf[i].setBounds(170,110+i*90,150,20);
+		cgpaFrame.add(cgpatf[i]);
+		
+		
+		
+		
+	}
+	JButton calculate = new JButton("Calculate");
+	calculate.setBounds(500,700,120,20);
+	cgpaFrame.add(calculate);
+	
+	
+	  
+	calculate.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			double totalcredit = 0;
+			double cgpa = 0;
+			
+			for(int i =0;i<numCourses;i++) {
+				try {
+					double Credit = Double.parseDouble(credit[i].getText());
+					double Cgpa = Double.parseDouble(cgpatf[i].getText());
+					
+					if(Credit<=0.00|| Cgpa<=0.00 || Cgpa>4.00) {
+						JOptionPane.showMessageDialog(cgpaFrame,"Fill up all the required field","Invalid input", 2 ); 
+						return;
+					}
+					
+					totalcredit+=Credit;
+					cgpa+=(Credit*Cgpa);
+				}
+				
+				catch(NumberFormatException ex) {
+					JOptionPane.showMessageDialog(cgpaFrame, "Invalid input. Please Check the field.","Error",3);
+					return;
+				}
+			}
+			double finalcgpa = cgpa/totalcredit;//here isv the problem not passing the value properly
+			finalcgpa = Math.round(finalcgpa*100.0)/100.0;
+		
+	
+			
+			showResult1(cgpaFrame,frame,semester, numCourses,  courseName,credit,  cgpatf, finalcgpa);
+		}
+	});
+	
+	
+	
+	cgpaFrame.setVisible(true);
+  	}
+static int k;
+public static void showResult1(JFrame cgpaFrame,JFrame frame,String semester, int numCourses, JTextField[] courseName,JTextField[] credit, JTextField[] cgpa, double finalcgpa ) {
+	
+	{
+	
+		
+		
+	JFrame  result = new JFrame("CGPA RESULT");
+	result.setSize(300,200);
+	result.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	result.setLocationRelativeTo(null);
+	result.setLayout(null);
+	
+	JLabel res = new JLabel("RESULT");
+	res.setBounds(100,20,300,20);
+	res.setFont(new Font("Arial",Font.BOLD,14));
+	res.setForeground(Color.BLUE);
+	res.setText("CGPA: "+ finalcgpa);
+	result.add(res);
+	
+	JButton rec = new JButton("Result");
+	rec.setBounds(60,100,80,20);
+	result.add(rec);
+	
+	JButton back = new JButton("Back");
+	back.setBounds(160,100,80,20);
+	result.add(back);
+	
+	back.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			result.setVisible(false);
+			cgpaFrame.setVisible(false);
+			//frame.setVisible(true);
+			
+		}
+		
+	});
+	
+	rec.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			boolean miss=false;
+			for(int i =0;i<numCourses;i++) {
+				if(courseName[i].getText().trim().isEmpty()) {
+					JOptionPane.showMessageDialog(result,"All Courses Name are required!!","Input issue",3);
+					 miss = true;
+					 break;
+					 
+					
+				}
+			}
+		if(miss) {
+			result.dispose();
+					return;
+		}
+			
+		
+		result.dispose();
+			
+			
+			
+				String Name = JOptionPane.showInputDialog("Name : ");
+				String ID = JOptionPane.showInputDialog("ID : ");
+				String Batch = JOptionPane.showInputDialog("Batch: ");
+				String Section = JOptionPane.showInputDialog("Section: ");
+			String Session = JOptionPane.showInputDialog("Session: ");
+				String Programme = JOptionPane.showInputDialog("Programme: ");
+				
+				showResult(result,cgpaFrame,frame,Name, ID ,Batch ,Section ,Session, Programme,semester, numCourses,  courseName,credit,  cgpa, finalcgpa );
+				
+			
+			
+		}
+			
+		
+	});
+	
+	
+	
+	result.setVisible(true);
+	
+	
+	
+	
+	}
+	 
+
+}
+public static void showResult(JFrame result, JFrame cgpaFrame,JFrame frame,String Name, String ID, String Batch ,String Section ,String Session,String Programme,String semester, int numCourses, JTextField[] courseName,JTextField[] credit, JTextField[] cgpa, double finalcgpa ) {
+	
+	JFrame  result1 = new JFrame(" RESULT SHEET");
+	result1.setSize(800,800);
+	result1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	result1.setLocationRelativeTo(null);
+	result1.setLayout(null);
+	
+	JLabel title = new JLabel("Result");
+	title.setBounds(300,60,300,20);
+	title.setFont(new Font("Arial",Font.BOLD,15));
+	title.setForeground(Color.BLACK);
+result1.add(title);
+	
+JLabel title1 = new JLabel("ID : "+  ID );
+title1.setBounds(50,90,300,20);
+title1.setFont(new Font("Arial",Font.BOLD,13));
+title1.setForeground(Color.BLACK);
+result1.add(title1);
+
+JLabel title2 = new JLabel("Name : "+ Name);
+title2.setBounds(50,110,300,20);
+title2.setFont(new Font("Arial",Font.BOLD,13));
+title2.setForeground(Color.BLACK);
+result1.add(title2);
+
+JLabel title3 = new JLabel("Batch : "+ Batch+",");
+title3.setBounds(50,130,100,20);
+title3.setFont(new Font("Arial",Font.BOLD,13));
+title3.setForeground(Color.BLACK);
+result1.add(title3);
+
+JLabel title4 = new JLabel("Section : "+Section+",");
+title4.setBounds(130,130,100,20);
+title4.setFont(new Font("Arial",Font.BOLD,13));
+title4.setForeground(Color.BLACK);
+result1.add(title4);
+
+JLabel title5 = new JLabel(Session);
+title5.setBounds(200,130,300,20);
+title5.setFont(new Font("Arial",Font.BOLD,13));
+title5.setForeground(Color.BLACK);
+result1.add(title5);
+
+JLabel title6 = new JLabel("Programme : "+Programme);
+title6.setBounds(50,150,300,20);
+title6.setFont(new Font("Arial",Font.BOLD,13));
+title6.setForeground(Color.BLACK);
+result1.add(title6);
+
+JLabel title7= new JLabel("Semester : "+semester);
+title7.setBounds(50,200,300,20);
+title7.setFont(new Font("Arial",Font.BOLD,13));
+title7.setForeground(Color.BLACK);
+result1.add(title7);
+
+//Bangladesh Studies
+
+	JLabel name = new JLabel("Title");
+	name.setBounds(80,220,300,20);//70
+	name.setFont(new Font("Arial",Font.BOLD,12));
+	name.setForeground(Color.BLACK);
+result1.add(name);
+
+
+JLabel c = new JLabel("Credit");
+c.setBounds(350,220,50,20);
+c.setFont(new Font("Arial",Font.BOLD,12));
+c.setForeground(Color.BLACK);
+result1.add(c);
+
+JLabel CG = new JLabel("CGPA");
+CG.setBounds(410,220,50,20);
+CG.setFont(new Font("Arial",Font.BOLD,12));
+CG.setForeground(Color.BLACK);
+result1.add(CG);
+
+
+JLabel Grade = new JLabel("Grade");
+Grade.setBounds(470,220,50,20);
+Grade.setFont(new Font("Arial",Font.BOLD,12));
+Grade.setForeground(Color.BLACK);
+result1.add(Grade);
+
+	double tc=0;
+	for (int i =0;i<numCourses;i++) {
+		
+		JLabel Cname = new JLabel(courseName[i].getText());
+		Cname.setBounds(50,240+i*30,300,20);
+		Cname.setFont(new Font("Arial",Font.BOLD,13));
+		Cname.setForeground(Color.BLACK);
+	result1.add(Cname);
+	
+	JLabel Cc = new JLabel(credit[i].getText());
+	Cc.setBounds(360,240+i*30,50,20);
+	Cc.setFont(new Font("Arial",Font.PLAIN,13));
+	Cc.setForeground(Color.BLACK);
+result1.add(Cc);
+
+JLabel Cg = new JLabel(cgpa[i].getText());
+Cg.setBounds(420,240+i*30,50,20);
+Cg.setFont(new Font("Arial",Font.PLAIN,13));
+Cg.setForeground(Color.BLACK);
+result1.add(Cg);
+
+JLabel grade = new JLabel();
+grade.setBounds(480,240+i*30,50,20);
+grade.setFont(new Font("Arial",Font.PLAIN,13));
+grade.setForeground(Color.BLACK);
+result1.add(grade);
+
+double cg = Double.parseDouble(cgpa[i].getText());
+if(cg== 4) {
+	grade.setText("A+");
+}
+
+if(cg< 4 && cg >=3.75) {
+	grade.setText("A");
+}
+
+if(cg<3.75 && cg>=3.5) {
+	grade.setText("A-");
+}
+
+if(cg<3.5 && cg>=3.25) {
+	grade.setText("B+");
+}
+
+if(cg<3.25 && cg>=3) {
+	grade.setText("B");
+}
+
+if(cg<3&& cg>=2.75) {
+	grade.setText("B-");
+}
+
+if(cg<2.75 && cg>=2.5) {
+	grade.setText("C+");
+}
+
+if(cg<2.5 && cg>=2.25) {
+	grade.setText("C");
+}
+if(cg== 2.25 && cg>=2.00) {
+	grade.setText("D");
+}
+
+if(cg<2.00) {
+	grade.setText("F");
+}
+
+		 k = 240+i*30;
+		result1.setVisible(true);
+		double cred= Double.parseDouble(credit[i].getText());
+		tc+=cred;
+	}
+	
+	
+	JLabel Tc = new JLabel("Total Credit : "+ tc);
+	Tc.setBounds(50,k+50,300,20);
+	Tc.setFont(new Font("Arial",Font.BOLD,12));
+	Tc.setForeground(Color.BLUE);
+result1.add(Tc);
+
+	JLabel Tcg = new JLabel("Total CGPA : "+ finalcgpa);
+	Tcg.setBounds(50,k+70,300,20);
+	Tcg.setFont(new Font("Arial",Font.BOLD,12));
+	Tcg.setForeground(Color.BLUE);
+result1.add(Tcg);
+
+
+
+
+JButton e = new JButton("Exit");
+e.setBounds(600,700,80,20);
+result1.add(e);
+
+e.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		result1.setVisible(false);
+		result.setVisible(false);
+		cgpaFrame.setVisible(false);
+	}
+});
+
+
+
+}
+}
+
+
+
+
+
+
+	
+
+
