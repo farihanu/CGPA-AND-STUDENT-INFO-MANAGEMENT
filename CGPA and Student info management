@@ -175,7 +175,7 @@ static int l=0, c=0;
 	image.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	frame.add(image);
 	
-	 
+	 //Image insert
 	
 	 upload.addActionListener(new ActionListener() {
 		 public void actionPerformed(ActionEvent e) {
@@ -219,19 +219,21 @@ static int l=0, c=0;
 	
 	
 	//2nd part
+	//TAble
 	
 	DefaultTableModel model = new DefaultTableModel();
 	String column[]= {"Name","Student ID","Date of Birth","Gender","Blood Group","Nationality","Address","Contact","Email","Dept","Year","CGPA","Image"};
 	model.setColumnIdentifiers(column);
 	JTable Table = new JTable(model);
 	
+	//Scroll
 	
 	JScrollPane scroll = new JScrollPane(Table);
 	scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	scroll.setBounds(430,50,1090,700);
 	frame.add(scroll);
 	
-	//SearchBar 
+	// Work of SearchBar 
 	JLabel search = new JLabel("Search");
 	search.setBounds(1000,20,50,20);
 	frame.add(search);
@@ -250,6 +252,8 @@ static int l=0, c=0;
 		}
 	});
 	
+	
+	//Customizing Table Index
 	TableColumn namecolumn = new  TableColumn();
 	namecolumn = Table.getColumnModel().getColumn(0);
 	namecolumn.setPreferredWidth(180);
@@ -295,6 +299,8 @@ static int l=0, c=0;
 	imagecolumn = Table.getColumnModel().getColumn(12);
 	imagecolumn.setPreferredWidth(200);
 	
+	//INSERT
+	
 	insert.addActionListener(new ActionListener(){
 	public void actionPerformed(ActionEvent e) {
 		
@@ -330,15 +336,27 @@ static int l=0, c=0;
 	}
 	});
 	
+	//UPDATE
+	
 	
      update.addActionListener(new ActionListener () {
     	 
     	 public void actionPerformed(ActionEvent e) {
+    		 
+    		 String BD = "";
+ 			Date SelectedDate = BDChooser.getDate();
+ 			SimpleDateFormat sdf =new SimpleDateFormat("d MMMM yyyy");
+ 			
+ 			if(SelectedDate != null) {
+ 				BD = sdf.format(SelectedDate);
+ 			}
+ 			
+    		 
     		 int SR = Table.getSelectedRow();
     		 if(SR>=0) {
     		 model.setValueAt(nametf.getText(),SR, 0);
     		 model.setValueAt(Idtf.getText(),SR, 1);
-    		 model.setValueAt(BDChooser.getDate(),SR, 2);
+    		 model.setValueAt(BD,SR, 2);
     		 model.setValueAt(c1.getSelectedItem(),SR, 3);
     		 model.setValueAt(c2.getSelectedItem(),SR, 4);
     		 model.setValueAt(Nationalitytf.getText(),SR, 5);
@@ -354,6 +372,8 @@ static int l=0, c=0;
     	 }
     	 
      });
+     
+     //Delete
     
      delete.addActionListener(new ActionListener() {
     	 public void actionPerformed(ActionEvent e) {
@@ -366,7 +386,9 @@ static int l=0, c=0;
     	 }
      });
      
-     //3rd part
+     //3rd part 
+     
+     //CGPA BUtton Work
      JButton cgpa= new JButton("CGPA");
      cgpa.setForeground(new Color(102, 51, 0));
   	cgpa.setBackground(new Color(200, 162, 200));
@@ -402,6 +424,7 @@ static int l=0, c=0;
 frame.setVisible(true);
 	}	
 	
+	//TAKING INPUT FOR CGPA CALCULATION
 	
 public static void CGPACalculator(JFrame frame,String semester,int numCourses) {
   		
@@ -461,7 +484,7 @@ public static void CGPACalculator(JFrame frame,String semester,int numCourses) {
 	cgpaFrame.add(calculate);
 	
 	
-	  
+	  //calculating CGPA
 	calculate.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			double totalcredit = 0;
@@ -500,6 +523,7 @@ public static void CGPACalculator(JFrame frame,String semester,int numCourses) {
 	cgpaFrame.setVisible(true);
   	}
 static int k;
+//showing CGPA calculation
 public static void showResult1(JFrame cgpaFrame,JFrame frame,String semester, int numCourses, JTextField[] courseName,JTextField[] credit, JTextField[] cgpa, double finalcgpa ) {
 	
 	{
@@ -586,6 +610,7 @@ public static void showResult1(JFrame cgpaFrame,JFrame frame,String semester, in
 	 
 
 }
+//Showing Result in Result frame
 public static void showResult(JFrame result, JFrame cgpaFrame,JFrame frame,String Name, String ID, String Batch ,String Section ,String Session,String Programme,String semester, int numCourses, JTextField[] courseName,JTextField[] credit, JTextField[] cgpa, double finalcgpa ) {
 	
 	JFrame  result1 = new JFrame(" RESULT SHEET");
@@ -642,7 +667,7 @@ title7.setFont(new Font("Arial",Font.BOLD,13));
 title7.setForeground(Color.BLACK);
 result1.add(title7);
 
-//Bangladesh Studies
+
 
 	JLabel name = new JLabel("Title");
 	name.setBounds(80,220,300,20);//70
